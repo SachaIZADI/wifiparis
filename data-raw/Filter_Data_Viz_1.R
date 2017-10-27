@@ -1,44 +1,47 @@
 library(lubridate)
 
 Viz1_Filter <-function(start, end, duration_max, districts, cat_sites, sites, countries, devices){
-  ##### /!\  besoin de loader Data_Viz_1 dans la fct ?
+
+  ##### /!\  besoin de loader Data_Viz_1 dans la fct ? ######
+
   Data_Viz_1_Filter<-Data_Viz_1 %>% filter(date(start_time)>=start & date(start_time)<=end)
   Data_Viz_1_Filter <- Data_Viz_1_Filter %>% filter(duration<duration_max)
-  if (districts != "All"){
+  if (!"All" %in% districts){
     Data_Viz_1_Filter <- Data_Viz_1_Filter %>% filter(Ardt %in% districts)
   }
-  if (cat_sites != "All"){
+  if (!"All" %in% cat_sites){
     Data_Viz_1_Filter <- Data_Viz_1_Filter %>% filter(category_site %in% cat_sites)
   }
-  if (sites != "All"){
+  if (!"All" %in% sites){
     Data_Viz_1_Filter <- Data_Viz_1_Filter %>% filter(site %in% sites)
   }
-  if (countries != "All"){
+  if (!"All" %in% countries){
     Data_Viz_1_Filter <- Data_Viz_1_Filter %>% filter(Country %in% countries)
   }
-  if (devices != "All"){
+  if (!"All" %in% devices){
     Data_Viz_1_Filter <- Data_Viz_1_Filter %>% filter(category_device %in% devices)
   }
   return(Data_Viz_1_Filter)
 }
 
-##Il faut traiter les cas districts == all
+#### Ecrire la doc de cette fonction
+
+
 
 start<-ymd("2016-09-10")
-end<-ymd("2016-09-11")
+end<-ymd("2016-09-12")
 duration_max<- 5000
-districts=c(1,2,5,8)
-cat_sites=c("Mairie","Bibliothèque")
-sites=c("Discothèque des Halles","Bibliothèque Port Royal","Bibliothèque Mouffetard")
-countries=c("SPAIN","FRANCE")
-devices=c("smartphone","tablet")
+districts<-c(1,2,5,8,"All")
+districts<-c(1,2,5,8)
+cat_sites<-c("Mairie","Bibliothèque")
+sites<-c("Discothèque des Halles","Bibliothèque Port Royal","Bibliothèque Mouffetard")
+countries<-c("SPAIN","FRANCE")
+devices<-c("smartphone","tablet")
 
 
 
 Viz1_Filter(start, end, duration_max, districts, cat_sites, sites, countries, devices) %>% View()
 #Viz1_Filter <-function(start, end, duration_max, districts, cat_sites, sites, countries, devices){
-
-
 
 
 
