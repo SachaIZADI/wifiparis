@@ -3,7 +3,7 @@ data(Data_Viz_1)
 
 Viz1_Filter <-function(start, end, duration_max=7200, districts=c("All"), cat_sites=c("All"), sites=c("All"), countries=c("All"), devices=c("All")){
 
-  data("Data_Viz_1")
+  data("Data_Viz_1") ######## A-t-on vraiment besoin de loader la database ici à chaque fois, car c'est super long si on doit la loader ...
 
   Data_Viz_1_Filter<-Data_Viz_1 %>% filter(date(start_time)>=start & date(start_time)<=end)
   Data_Viz_1_Filter <- Data_Viz_1_Filter %>% filter(duration<duration_max)
