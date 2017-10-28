@@ -9,6 +9,7 @@ devtools::use_data(Data_Viz_1)
 
 devtools:: use_package("dplyr")
 devtools:: use_package("tidyr")
+devtools:: use_package("lubridate")
 
 devtools:: use_package("leaflet")
 devtools::use_package("sp")
@@ -18,8 +19,5 @@ devtools:: use_package("geojson")
 devtools:: use_package("ggplot2")
 devtools:: use_package("ggthemes")
 devtools:: use_package("plotly")
-
-
-# Il faut écrire un .R pour les database
 
 

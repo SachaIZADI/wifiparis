@@ -1,3 +1,28 @@
+#' Plots the number of wifi connexions with respects to a given parametrization
+#'
+#' @param start = a POSXct, end = a POSXct, duration_max = an int (default=7200), districts = a vector (default=c("All")), cat_sites = idem, sites = idem, countries = idem, devices = idem, analysis_axis = a string of char to chose in ("None","Country","category_device","site","Ardt","category_site" - default="None"), complete_data = Boolean (default=FALSE)
+#' @import tidyr dplyr lubridate ggplot2 ggthemes plotly
+#' @return a dataframe
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' start<-ymd("2016-09-27")
+#' end<-ymd("2016-09-30")
+#' duration_max<- 5000
+#' districts<-c(1,2,5,8,"All")
+#' cat_sites<-c("Mairie","Bibliothèque")
+#' sites<-c("All")
+#' countries<-c("All")
+#' devices<-c("smartphone","tablet")
+#' analysis_axis<-"category_device"
+#'
+#' Viz1_plot(start, end, duration_max, districts, cat_sites, sites, countries, devices, analysis_axis, TRUE)
+#' }
+#'
+#'
+
+
 Viz1_plot <-function(start, end, duration_max=7200, districts=c("All"), cat_sites=c("All"), sites=c("All"), countries=c("All"), devices=c("All"), analysis_axis="None", complete_data=FALSE){
   data_Viz1_plot <- Viz1_Filter(start, end, duration_max, districts, cat_sites, sites, countries, devices) %>%
     number_connexions(start,end,analysis_axis)
@@ -50,22 +75,3 @@ Viz1_plot <-function(start, end, duration_max=7200, districts=c("All"), cat_site
 
   return(ggplotly(p))
 }
-
-
-###### Ecrire des fonctions de test et gérer la viz dans le cas où c'est analysis_axis == None
-
-
-start<-ymd("2016-09-27")
-end<-ymd("2016-09-30")
-duration_max<- 5000
-districts<-c(1,2,5,8,"All")
-cat_sites<-c("Mairie","Bibliothèque")
-sites<-c("All")
-countries<-c("All")
-devices<-c("smartphone","tablet")
-#analysis_axis<-"None"
-analysis_axis<-"category_device"
-
-Viz1_plot(start, end, duration_max, districts, cat_sites, sites, countries, devices, analysis_axis, TRUE)
-
-

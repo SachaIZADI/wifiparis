@@ -1,13 +1,25 @@
-#' Returns the number of connexions of a set vs. time
+#' Returns the number of connexions of a set vs. time with respects to a given axis of analysis
 #'
-#' @param a_set = a subset of the wifi_connexion_data set where at least start_time and stop_time are present
+#' @param a_set = a dataframe, start = a POSXct, end = a POSXct, analysis_axis = a string of char to chose in ("None","Country","category_device","site","Ardt","category_site")
 #' @import tidyr dplyr lubridate plotly
 #' @return a dataframe
 #' @export
 #'
 #' @examples
 #' \dontrun{
-#' simultaneous_connexions(wifi_connexion_data)
+#' start<-ymd("2016-09-10")
+#' end<-ymd("2016-09-17")
+#' duration_max<- 5000
+#' districts<-c(1,2,5,8,"All")
+#' districts<-c(1,2,5,8)
+#' cat_sites<-c("Mairie","Bibliothèque")
+#' sites<-c("All")
+#' countries<-c("All")
+#' devices<-c("smartphone","tablet")
+#' analysis_axis<-"category_device"
+#' a_set <- Viz1_Filter(start, end, duration_max, districts, cat_sites, sites, countries, devices)
+#'
+#' number_connexions(a_set,start,end, analysis_axis)
 #' }
 #'
 #'
@@ -43,29 +55,4 @@ number_connexions <- function(set, start, end, analysis_axis){
   }
   return(nb_connex)
 }
-
-###### réécrire la doc
-
-
-
-
-library(lubridate)
-library(dplyr)
-
-start<-ymd("2016-09-10")
-end<-ymd("2016-09-17")
-duration_max<- 5000
-districts<-c(1,2,5,8,"All")
-districts<-c(1,2,5,8)
-cat_sites<-c("Mairie","Bibliothèque")
-sites<-c("All")
-countries<-c("All")
-devices<-c("smartphone","tablet")
-analysis_axis<-"category_device"
-
-
-Viz1_Filter(start, end, duration_max, districts, cat_sites, sites, countries, devices) %>%
-  number_connexions(start,end, analysis_axis) %>%
-  View()
-
 
