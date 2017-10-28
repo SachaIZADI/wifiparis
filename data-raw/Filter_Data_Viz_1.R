@@ -3,7 +3,7 @@ data(Data_Viz_1)
 
 Viz1_Filter <-function(start, end, duration_max=7200, districts=c("All"), cat_sites=c("All"), sites=c("All"), countries=c("All"), devices=c("All")){
 
-  ##### /!\  besoin de loader Data_Viz_1 dans la fct ? ######
+  data("Data_Viz_1")
 
   Data_Viz_1_Filter<-Data_Viz_1 %>% filter(date(start_time)>=start & date(start_time)<=end)
   Data_Viz_1_Filter <- Data_Viz_1_Filter %>% filter(duration<duration_max)
