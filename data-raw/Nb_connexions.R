@@ -12,53 +12,43 @@
 #'
 #'
 
-number_connexions <- function(start, end, set){
+number_connexions <- function(set, start, end){
   ### In case the time scope of the analysis is < 1 week >>> the nb of connexions is calculated by day
   if(as.integer(end-start)>7){
-    nb_connexions <- set %>%
+    nb_connex <- set %>%
       mutate(date=date(start_time)) %>%
       group_by(date) %>%
       mutate(nb_connexions=n())
   }else{ ### In the other case >>> the nb of connexions is calculated by hour
-    nb_connexions <- set %>%
-      mutate(moment=ymd_hms(paste(substr(as.character(start_time),1,nchar(as.character(start_time))-5),"00:00",sep=''))) %>%
-      group_by(moment) %>%
+    nb_connex <- set %>%
+      mutate(date=ymd_hms(paste(substr(as.character(start_time),1,nchar(as.character(start_time))-5),"00:00",sep=''))) %>%
+      group_by(date) %>%
       mutate(nb_connexions=n())
   }
+  return(nb_connex)
 }
 
-###### Tester cette fonction + réécrire la doc
+###### réécrire la doc
 
 
 
 
-
-
-start_time<-ymd_hms("2016-02-10 14:45:39")
+library(lubridate)
+library(dplyr)
 
 start<-ymd("2016-09-10")
 end<-ymd("2016-09-17")
-Viz1_Filter(start, end, 7200, c("All"), c("All"), c("All"), c("All"), c("All")) %>%
-  mutate(moment=ymd_hms(paste(substr(as.character(start_time),1,nchar(as.character(start_time))-5),"00:00",sep=''))) %>%
-  group_by(moment) %>%
-  mutate(nb_connexions=n()) %>% View()
+duration_max<- 5000
+districts<-c(1,2,5,8,"All")
+districts<-c(1,2,5,8)
+cat_sites<-c("Mairie","Bibliothèque")
+sites<-c("All")
+countries<-c("All")
+devices<-c("smartphone","tablet")
 
 
-
-
-
-wifi_connexion_data %>% filter(site=="Bibliothèque Yourcenar" |site=="Parc Monceau 1 (Entré)") %>%  number_connexions() %>% View()
-
-
-p<-ggplot(data = wifi_connexion_data %>% filter(site=="Promenade Des Champs Elysees" |site=="Bibliothèque Yourcenar") %>%  number_connexions(),
-       aes(x =date , y = nb_connexions, color=site)) +
-  #geom_line(size = 0.3) +
-  geom_smooth(method = 'loess',formula = y ~ x,span = 0.1, size = 0.4,se=FALSE)+
-  #geom_smooth(method = 'loess',formula = y ~ x,span = 0.1, size = 0.4)+
-  ggtitle("Number of daily connexions")+
-  labs(y="Number of connexions",x = "Date")+
-  theme_fivethirtyeight(base_family = "helvetica",base_size=10) +
-  theme(legend.title=element_blank())
-ggplotly(p)
+Viz1_Filter(start, end, duration_max, districts, cat_sites, sites, countries, devices) %>%
+  number_connexions(start,end) %>%
+  View()
 
 

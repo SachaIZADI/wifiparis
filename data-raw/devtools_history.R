@@ -15,6 +15,9 @@ devtools::use_package("sp")
 devtools::use_package("sf")
 devtools:: use_package("geojson")
 
+devtools:: use_package("ggplot2")
+devtools:: use_package("ggthemes")
+devtools:: use_package("plotly")
 
 
 # Il faut écrire un .R pour les database

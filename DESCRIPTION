@@ -7,5 +7,8 @@ Depends: R (>= 3.4.1)
 License: What license is it under?
 Encoding: UTF-8
 LazyData: true
-Imports: sp
+Imports: sp,
+    ggplot2,
+    ggthemes,
+    plotly
 RoxygenNote: 6.0.1

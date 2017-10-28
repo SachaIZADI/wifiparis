@@ -1,6 +1,7 @@
 library(lubridate)
+data(Data_Viz_1)
 
-Viz1_Filter <-function(start, end, duration_max, districts, cat_sites, sites, countries, devices){
+Viz1_Filter <-function(start, end, duration_max=7200, districts=c("All"), cat_sites=c("All"), sites=c("All"), countries=c("All"), devices=c("All")){
 
   ##### /!\  besoin de loader Data_Viz_1 dans la fct ? ######
 
