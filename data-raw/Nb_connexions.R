@@ -13,8 +13,6 @@
 #'
 
 number_connexions <- function(set, start, end, analysis_axis){
-  # traiter le cas axis_analysis== None >>> Group_by(date) uniquement
-  # else : group_by(axis)
 
   if (analysis_axis=="None"){
     ### In case the time scope of the analysis is < 1 week >>> the nb of connexions is calculated by day
