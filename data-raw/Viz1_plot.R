@@ -1,4 +1,4 @@
-Viz1_plot <-function(start, end, duration_max=7200, districts=c("All"), cat_sites=c("All"), sites=c("All"), countries=c("All"), devices=c("All"), analysis_axis="None"){
+Viz1_plot <-function(start, end, duration_max=7200, districts=c("All"), cat_sites=c("All"), sites=c("All"), countries=c("All"), devices=c("All"), analysis_axis="None", complete_data=FALSE){
   data_Viz1_plot <- Viz1_Filter(start, end, duration_max, districts, cat_sites, sites, countries, devices) %>%
     number_connexions(start,end)
 
@@ -24,7 +24,7 @@ Viz1_plot <-function(start, end, duration_max=7200, districts=c("All"), cat_site
 
     } else {
       p<-ggplot(data = data_Viz1_plot,
-                aes(x = date , y = nb_connexions, color=analysis_axis)) +
+                aes(x = date , y = nb_connexions)) +
         geom_line(size = 0.3) +
         geom_smooth(method = 'loess',formula = y ~ x,span = 0.1, size = 0.4,se=FALSE)
     }
@@ -49,5 +49,60 @@ Viz1_plot <-function(start, end, duration_max=7200, districts=c("All"), cat_site
 ###### Ecrire des fonctions de test et gérer la viz dans le cas où c'est analysis_axis == None
 
 
+start<-ymd("2016-09-10")
+end<-ymd("2016-09-20")
+duration_max<- 5000
+districts<-c(1,2,5,8,"All")
+districts<-c(1,2,5,8)
+cat_sites<-c("Mairie","Bibliothèque")
+sites<-c("All")
+countries<-c("All")
+devices<-c("smartphone","tablet")
+
+Viz1_plot(start, end, duration_max, districts, cat_sites, sites, countries, devices, "category_device", TRUE)
 
 
+
+#Il y a un pb avec le axis of analysis et avec le smooth (a besoin de plusieurs points)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+start<-ymd("2016-02-10")
+end<-ymd("2016-09-20")
+duration_max<- 5000
+districts<-c(1,2,5,8,"All")
+districts<-c(1,2,5,8)
+cat_sites<-c("Mairie","Bibliothèque")
+sites<-c("All")
+countries<-c("All")
+devices<-c("All")
+
+data_Viz1_plot <- Viz1_Filter(start, end, duration_max, districts, cat_sites, sites, countries, devices) %>%
+  number_connexions(start,end)
+
+p<-ggplot(data = data_Viz1_plot,
+          aes(x = date , y = nb_connexions, color=category_device)) +
+  geom_line(size = 0.3) #+
+#geom_smooth(method = 'loess',formula = y ~ x,span = 0.1, size = 0.4,se=FALSE)
+
+p<-p+ggtitle("Number of daily connexions")
+
+p<-p +
+  labs(y="Number of connexions",x = "Date")+
+  theme_fivethirtyeight(base_family = "helvetica",base_size=10) +
+  theme(legend.title=element_blank())
+
+ggplotly(p)
