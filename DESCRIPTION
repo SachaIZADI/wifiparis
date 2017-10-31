@@ -10,5 +10,10 @@ LazyData: true
 Imports: sp,
     ggplot2,
     ggthemes,
-    plotly
+    plotly,
+    dplyr,
+    tidyr,
+    leaflet,
+    sf,
+    geojson
 RoxygenNote: 6.0.1
