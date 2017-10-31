@@ -5,15 +5,17 @@ library(sf)
 library(tidyr)
 library(geojson)
 
-
-Data_Map_2 <- mapping_site_gps_catsite %>%  filter (Site %in% Data_Map$site)
+Map_plot <- function(start, end, duration_min=0, duration_max=7200, districts=c("All"), cat_sites=c("All"), sites=c("All"), countries=c("All"), devices=c("All")){
 
 pal_Ardt <- colorNumeric("Blues", NULL)
 pal_Site <- colorFactor(c("navy", "red","purple","yellow","white","green"),
-                        mapping_site_gps_catsite$category_site)
+                          mapping_site_gps_catsite$category_site)
+
+Data_Map_plot <- Data_Map_Filter(start, end, duration_min, duration_max, districts, cat_sites, sites, countries, devices)
+mapping_site_gps_catsite <- mapping_site_gps_catsite %>%  filter (Site %in% Data_Map_Filter$site)
 
 
-map <- leaflet(arrondissements_geojson[arrondissements_geojson$Ardt==16]) %>%
+map <- leaflet(arrondissements_geojson) %>%
 
   addProviderTiles(providers$OpenStreetMap.BlackAndWhite) %>%
 
@@ -43,9 +45,8 @@ map <- leaflet(arrondissements_geojson[arrondissements_geojson$Ardt==16]) %>%
                            "Adresse:", mapping_site_gps_catsite$Adresse_Postale, "<br>",
                            "Arrondissement:", mapping_site_gps_catsite$Ardt,"<br>") )
 
-map
 
-no_site_par_arrondissement<- mapping_site_gps_catsite %>% group_by(Ardt) %>% summarise ( count = n() )
+return(map)
 
-lat = arrondissements_geojson[arrondissements_geojson$object==16,"geom_x_y1"]
-long = arrondissements_geojson[arrondissements_geojson$object==16,"geom_x_y2"]
+}
+
