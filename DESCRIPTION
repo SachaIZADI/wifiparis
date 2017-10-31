@@ -13,7 +13,10 @@ Imports: sp,
     plotly,
     dplyr,
     tidyr,
+<<<<<<< HEAD
+=======
     lubridate,
+>>>>>>> 252b795585a3d3a08f4d7dac298b45ff363ffeca
     leaflet,
     sf,
     geojson
