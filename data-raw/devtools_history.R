@@ -6,6 +6,7 @@ devtools::use_data(mapping_langues)
 devtools::use_data(mapping_devices)
 devtools::use_data(arrondissements_geojson)
 devtools::use_data(Data_Viz_1)
+devtools:: use_data(Data_Map)
 
 devtools:: use_package("dplyr")
 devtools:: use_package("tidyr")
