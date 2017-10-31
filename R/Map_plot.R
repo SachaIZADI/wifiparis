@@ -1,3 +1,5 @@
+#' @title Map_Plot
+#' @description Plots filtered data onto an Open Street Map of Paris
 #' @param start = a POSXct, end = a POSXct, duration_min = an int (default is 0), duration_max = an int (default=7200), districts = a vector (default=c("All")), cat_sites = idem, sites = idem, countries = idem, devices = idem
 #' @import tidyr dplyr lubridate sp leaflet sf geojson
 #' @return a dataframe
