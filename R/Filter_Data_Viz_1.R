@@ -25,7 +25,7 @@ Viz1_Filter <-function(start, end, duration_min=0, duration_max=7200, districts=
   ## data("Data_Viz_1")
   ######## Si jamais il y a un pb, décommenter la ligne du haut. A-t-on vraiment besoin de loader la database ici à chaque fois, car c'est super long si on doit la loader ...
 
-  Data_Viz_1_Filter<-Data_Viz_1 %>% filter(as.Date(start_time)>=start & as.Date(start_time)<=end)
+  Data_Viz_1_Filter<-Data_Viz_1 %>% filter(date(start_time)>=start & date(start_time)<=end)
   Data_Viz_1_Filter <- Data_Viz_1_Filter %>% filter(duration<duration_max & duration_min< duration)
   if (!"All" %in% districts){
     Data_Viz_1_Filter <- Data_Viz_1_Filter %>% filter(Ardt %in% districts)
