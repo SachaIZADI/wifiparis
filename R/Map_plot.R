@@ -16,7 +16,7 @@ Data_Map_plot <- Data_Map_Filter(start, end, duration_min, duration_max, distric
 Data_Map_gps_catsite <- mapping_site_gps_catsite %>%  filter (Site %in% unique(Data_Map_plot$site))
 
 map <- leaflet(arrondissements_geojson) %>%
-  addProviderTiles(providers$OpenStreetMap.BlackAndWhite) %>%
+  addTiles() %>%
   setView(lng =2.345228, lat = 48.862246, zoom = 12) %>%
   addPolygons(color = pal_Ardt, stroke = FALSE,
               smoothFactor = 0, fillOpacity = 0.3) %>%
@@ -42,3 +42,6 @@ map <- leaflet(arrondissements_geojson) %>%
 
 return(map)
 }
+wifiparis::Map_plot(start, end, duration_min, duration_max, districts, cat_sites, sites, countries, devices)
+
+
