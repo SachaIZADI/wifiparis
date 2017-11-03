@@ -8,14 +8,19 @@
 
 Map_plot <- function(start, end, duration_min=0, duration_max=7200, districts=c("All"), cat_sites=c("All"), sites=c("All"), countries=c("All"), devices=c("All")) {
 
-#Define the Map data
+
+
+#Define the map data
 Data_Map_plot <- Data_Map_Filter(start, end, duration_min, duration_max, districts, cat_sites, sites, countries, devices)
 Data_Map_gps_catsite <- mapping_site_gps_catsite %>%  filter (Site %in% unique(Data_Map_plot$site))
 
-#Define palets and description
-pal_Ardt <- colorNumeric("Blues", NULL)
+#Define palets
+pal_Ardt <- colorNumeric("Blues", NULL )
+
 pal_Site <- colorFactor(c("navy", "red","purple","yellow","white","green"),
-                          mapping_site_gps_catsite$category_site)
+                        mapping_site_gps_catsite$category_site)
+
+#Define description
 description <- paste("Nom:", Data_Map_gps_catsite$Site, "<br>",
                      "Adresse:", Data_Map_gps_catsite$Adresse_Postale, "<br>",
                      "Arrondissement:", Data_Map_gps_catsite$Ardt,"<br>")
@@ -25,30 +30,35 @@ Lng=as.numeric(Data_Map_gps_catsite$y)
 Lat=as.numeric(Data_Map_gps_catsite$x)
 
 map <- leaflet(arrondissements_geojson) %>%
+
   addTiles() %>%
+
   setView(lng =2.345228, lat = 48.862246, zoom = 12) %>%
+
   addPolygons(color = pal_Ardt, stroke = FALSE,
               smoothFactor = 0, fillOpacity = 0.3,group="Arrondissement") %>%
+
   addPolylines (group="Arrondissement") %>%
+
   addCircleMarkers(stroke = FALSE,
 
                    lng= ~Lng,
                    lat= ~Lat ,
                    radius = 5,
 
-                   color = pal_Site,
-                   fillColor = pal_Site,
+                   color = pal_Site(Data_Map_gps_catsite$category_site),
+                   fillColor = pal_Site(Data_Map_gps_catsite$category_site),
                    fillOpacity = 5,
 
                    popup = description,
                    group = "Wifi Site") %>%
-
   addCircles(lng= ~Lng,
              lat= ~Lat ,
-             radius = 50, group = "Wifi Coverage Zone", stroke = TRUE, color = "#03F", weight = 5,
-             opacity = 0.5, fill = TRUE, fillColor = "#03F", fillOpacity = 0.2) %>%
+             radius = 100, group = "Wifi Coverage Zone", stroke = TRUE, color = "black",
+             opacity = 0.5, fill = TRUE, fillColor = "grey", fillOpacity = 5, popup = description) %>%
 
-  addLegend(pal_Site, values = mapping_site_gps_catsite$category_site, position = "bottomright",title = 'Legend') %>%
+  addLegend(pal = pal_Site, values = Data_Map_gps_catsite$category_site, position = "bottomright",title = 'Legend') %>%
+
   addLayersControl(
     baseGroups = c("Wifi Site", "Wifi Coverage Zone"),
     overlayGroups = c("Arrondissement")
@@ -57,5 +67,3 @@ map <- leaflet(arrondissements_geojson) %>%
 return(map)
 
 }
-
-
