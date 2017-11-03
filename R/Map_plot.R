@@ -17,7 +17,7 @@ Data_Map_gps_catsite <- mapping_site_gps_catsite %>%  filter (Site %in% unique(D
 #Define palets
 pal_Ardt <- colorNumeric("Blues", NULL )
 
-pal_Site <- colorFactor(c("navy", "red","purple","yellow","white","green"),
+pal_Site <- colorFactor(c("navy", "red","purple","green","white","yellow"),
                         mapping_site_gps_catsite$category_site)
 
 #Define description
