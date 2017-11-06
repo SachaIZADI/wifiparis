@@ -26,8 +26,8 @@
 
 number_connexions <- function(set, start, end, analysis_axis){
 
-  if (analysis_axis=="None"){
-    ### In case the time scope of the analysis is < 1 week >>> the nb of connexions is calculated by day
+  if (analysis_axis=="None"){ ### in case there is no analysis_axis, we don't group data by any rule
+    ### In case the time scope of the analysis is > 1 week >>> the nb of connexions is calculated by day
     if(as.integer(end-start)>7){
       nb_connex <- set %>%
         mutate(date=date(start_time)) %>%
@@ -39,7 +39,7 @@ number_connexions <- function(set, start, end, analysis_axis){
         group_by(date) %>%
         mutate(nb_connexions=n())
     }
-  } else {
+  } else {### in case there the analysis_axis is set, we group data by analysis_axis
     ### In case the time scope of the analysis is < 1 week >>> the nb of connexions is calculated by day
     if(as.integer(end-start)>7){
       nb_connex <- set %>%
