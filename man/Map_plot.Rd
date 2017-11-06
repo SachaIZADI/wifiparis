@@ -2,11 +2,7 @@
 % Please edit documentation in R/Map_plot.R
 \name{Map_plot}
 \alias{Map_plot}
-<<<<<<< HEAD
 \title{Plots a map}
-=======
-\title{Map_Plot}
->>>>>>> 41fb4a006ae528227001e1013cbc8ce5bcf4e57e
 \usage{
 Map_plot(start, end, duration_min = 0, duration_max = 7200,
   districts = c("All"), cat_sites = c("All"), sites = c("All"),
@@ -19,7 +15,6 @@ Map_plot(start, end, duration_min = 0, duration_max = 7200,
 a dataframe
 }
 \description{
-<<<<<<< HEAD
 Plots a map
 }
 \examples{
@@ -37,7 +32,4 @@ Map_plot(start, end, duration_min, duration_max, districts, cat_sites, sites, co
 
 }
 
-=======
-Plots filtered data onto an Open Street Map of Paris
->>>>>>> 41fb4a006ae528227001e1013cbc8ce5bcf4e57e
 }

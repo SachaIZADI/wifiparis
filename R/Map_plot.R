@@ -105,7 +105,3 @@ map <- leaflet(arrondissements_geojson, options = leafletOptions(minZoom = 11, m
 
   return(map)
 }
-<<<<<<< HEAD
-=======
-
->>>>>>> 41fb4a006ae528227001e1013cbc8ce5bcf4e57e
