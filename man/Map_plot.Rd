@@ -4,15 +4,13 @@
 \alias{Map_plot}
 \title{Plots a map}
 \usage{
-Map_plot(start, end, duration_min = 0, duration_max = 7200,
-  districts = c("All"), cat_sites = c("All"), sites = c("All"),
-  countries = c("All"), devices = c("All"))
+Map_plot(a_set)
 }
 \arguments{
-\item{start}{= a POSXct, end = a POSXct, duration_min = an int (default is 0), duration_max = an int (default=7200), districts = a vector (default=c("All")), cat_sites = idem, sites = idem, countries = idem, devices = idem}
+\item{a_set}{= a dataframe}
 }
 \value{
-a dataframe
+a leaflet
 }
 \description{
 Plots a map
@@ -28,7 +26,9 @@ cat_sites<-c("Bibliothèque")
 sites<-c("All")
 countries<-c("All")
 devices<-c("smartphone","table")
-Map_plot(start, end, duration_min, duration_max, districts, cat_sites, sites, countries, devices)
+a_set<-Viz1_Filter(start, end, duration_min, duration_max, districts, cat_sites, sites, countries, devices)
+
+Map_plot(a_set)
 
 }
 
