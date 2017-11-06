@@ -20,6 +20,8 @@
 #' a_set <- Viz1_Filter(start, end, duration_min, duration_max, districts, cat_sites, sites, countries, devices) %>%
 #' number_connexions(start,end,analysis_axis)
 #'
+#' A TESTER
+#'
 #' Viz1_plot_V2(a_set, start, end, analysis_axis, TRUE)
 #' }
 #'
