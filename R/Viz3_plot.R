@@ -24,7 +24,7 @@
 #' a_set <- Viz1_Filter(start, end, duration_min, duration_max, districts, cat_sites, sites, countries, devices) %>%
 #' number_connexions(start,end,analysis_axis)
 #'
-#' Viz3_plot(a_set, analysis_axis = "None", hierarchy_view)
+#' Viz3_plot(a_set, analysis_axis, hierarchy_view)
 #'
 #' }
 #'
