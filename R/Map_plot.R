@@ -36,9 +36,9 @@ map <- leaflet(arrondissements_geojson, options = leafletOptions(minZoom = 11, m
   fitBounds(max(Lng), max(Lat), min(Lng), min(Lat)) %>%
 
   addPolygons(color = pal_Ardt, stroke = FALSE,
-              smoothFactor = 0, fillOpacity = 0.3,group="Arrondissement") %>%
+              smoothFactor = 0, fillOpacity = 0.2,group="Arrondissement") %>%
 
-  addPolylines (group="Arrondissement") %>%
+  addPolylines (group="Arrondissement",stroke = TRUE, weight = 3, opacity = 0.5) %>%
 
   addCircleMarkers(stroke = FALSE,
 
@@ -52,17 +52,57 @@ map <- leaflet(arrondissements_geojson, options = leafletOptions(minZoom = 11, m
 
                    popup = description,
                    group = "Wifi Site") %>%
+
   addCircles(lng= ~Lng,
              lat= ~Lat ,
-             radius = 50, group = "Wifi Coverage Zone", stroke = TRUE, color = "black",
-             opacity = 0.5, fill = TRUE, fillColor = "transparent", fillOpacity = 0.2, popup = description) %>%
+             radius = 100, group = "Wifi Coverage Zone (100m Radius)", stroke = TRUE, color = "black",
+             opacity = 0.5, fill = TRUE, fillColor = "transparent", fillOpacity = 4, popup = description) %>%
+
+  addCircleMarkers(stroke = FALSE,
+                   lng= ~Lng,
+                   lat= ~Lat ,
+                   radius = 4,
+
+                   color = pal_Site(Data_Map_gps_catsite$category_site),
+                   fillColor = pal_Site(Data_Map_gps_catsite$category_site),
+                   fillOpacity = 4,
+
+                   popup = description,
+                   group = "Wifi Clustering",
+                   clusterOptions = markerClusterOptions(
+                     showCoverageOnHover = FALSE, zoomToBoundsOnClick = TRUE,
+                     spiderfyOnMaxZoom = TRUE, removeOutsideVisibleBounds = TRUE,
+                     spiderLegPolylineOptions = list(weight = 1.5, color = "#222", opacity =
+                                                       0.5), freezeAtZoom = FALSE)) %>%
 
   addLegend(pal = pal_Site, values = Data_Map_gps_catsite$category_site, position = "bottomright", title = 'Legend') %>%
 
   addLayersControl(
-    overlayGroups = c("Arrondissement","Wifi Site", "Wifi Coverage Zone")
+    baseGroups = c("Wifi Site", "Wifi Coverage Zone (100m Radius)","Wifi Clustering"),
+      overlayGroups = c("Arrondissement")
     )
 
-return(map)
+  return(map)
 }
+
+library(tidyr)
+library(dplyr)
+library(lubridate)
+library(sp)
+library(leaflet)
+library(sf)
+library(geojson)
+
+start<-lubridate::ymd("2016-09-27")
+end<-lubridate::ymd("2016-09-30")
+duration_min<- 10
+duration_max<- 5000
+districts<-c("20","11")
+cat_sites<-c("All")
+sites<-c("All")
+countries<-c("All")
+devices<-c("smartphone","tablet")
+
+Map_plot(start, end, duration_min, duration_max, districts, cat_sites, sites, countries, devices)
+
 
