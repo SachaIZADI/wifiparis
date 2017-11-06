@@ -85,24 +85,3 @@ map <- leaflet(arrondissements_geojson, options = leafletOptions(minZoom = 11, m
   return(map)
 }
 
-library(tidyr)
-library(dplyr)
-library(lubridate)
-library(sp)
-library(leaflet)
-library(sf)
-library(geojson)
-
-start<-lubridate::ymd("2016-09-27")
-end<-lubridate::ymd("2016-09-30")
-duration_min<- 10
-duration_max<- 5000
-districts<-c("20","11")
-cat_sites<-c("All")
-sites<-c("All")
-countries<-c("All")
-devices<-c("smartphone","tablet")
-
-Map_plot(start, end, duration_min, duration_max, districts, cat_sites, sites, countries, devices)
-
-
