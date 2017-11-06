@@ -16,5 +16,7 @@ Imports: sp,
     lubridate,
     leaflet,
     sf,
-    geojson
+    geojson,
+    treemap,
+    d3treeR
 RoxygenNote: 6.0.1
