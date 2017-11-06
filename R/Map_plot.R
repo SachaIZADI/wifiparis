@@ -1,9 +1,15 @@
-#' @title Map_Plot
-#' @description Plots filtered data onto an Open Street Map of Paris
+#' Plots a map
+#'
 #' @param start = a POSXct, end = a POSXct, duration_min = an int (default is 0), duration_max = an int (default=7200), districts = a vector (default=c("All")), cat_sites = idem, sites = idem, countries = idem, devices = idem
 #' @import tidyr dplyr lubridate sp leaflet sf geojson
 #' @return a dataframe
 #' @export
+#'
+#' @examples
+#' \dontrun{
+#' A FAIRE
+#' }
+#'
 
 
 Map_plot <- function(start, end, duration_min=0, duration_max=7200, districts=c("All"), cat_sites=c("All"), sites=c("All"), countries=c("All"), devices=c("All")) {
