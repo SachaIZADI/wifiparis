@@ -17,7 +17,8 @@
 #' countries<-c("All")
 #' devices<-c("smartphone","tablet")
 #' analysis_axis<-"category_device"
-#' a_set <- Viz1_Filter(start, end, duration_min, duration_max, districts, cat_sites, sites, countries, devices)
+#' a_set <- Viz1_Filter(start, end, duration_min, duration_max, districts, cat_sites, sites, countries, devices) %>%
+#' number_connexions(start,end,analysis_axis)
 #'
 #' Viz1_plot_V2(a_set, start, end, analysis_axis, TRUE)
 #' }
@@ -25,7 +26,7 @@
 #'
 
 Viz1_plot_V2 <-function(a_set, start, end, analysis_axis="None", complete_data=FALSE){
-  data_Viz1_plot <- a_set %>% number_connexions(start,end,analysis_axis)
+  data_Viz1_plot <- a_set
 
   if (analysis_axis == "None"){
     p<-ggplot(data = data_Viz1_plot,
