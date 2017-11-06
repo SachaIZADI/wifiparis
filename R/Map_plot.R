@@ -8,8 +8,6 @@
 
 Map_plot <- function(start, end, duration_min=0, duration_max=7200, districts=c("All"), cat_sites=c("All"), sites=c("All"), countries=c("All"), devices=c("All")) {
 
-
-
 #Define the map data
 Data_Map_plot <- Data_Map_Filter(start, end, duration_min, duration_max, districts, cat_sites, sites, countries, devices)
 Data_Map_gps_catsite <- mapping_site_gps_catsite %>%  filter (Site %in% unique(Data_Map_plot$site))
@@ -29,11 +27,13 @@ description <- paste("Nom:", Data_Map_gps_catsite$Site, "<br>",
 Lng=as.numeric(Data_Map_gps_catsite$y)
 Lat=as.numeric(Data_Map_gps_catsite$x)
 
-map <- leaflet(arrondissements_geojson) %>%
+map <- leaflet(arrondissements_geojson, options = leafletOptions(minZoom = 11, maxZoom = 15)) %>%
 
   addTiles() %>%
 
-  setView(lng =2.345228, lat = 48.862246, zoom = 12) %>%
+  setView(lng =2.345228, lat = 48.862246, zoom = 11) %>%
+
+  fitBounds(max(Lng), max(Lat), min(Lng), min(Lat)) %>%
 
   addPolygons(color = pal_Ardt, stroke = FALSE,
               smoothFactor = 0, fillOpacity = 0.3,group="Arrondissement") %>%
@@ -44,26 +44,25 @@ map <- leaflet(arrondissements_geojson) %>%
 
                    lng= ~Lng,
                    lat= ~Lat ,
-                   radius = 5,
+                   radius = 4,
 
                    color = pal_Site(Data_Map_gps_catsite$category_site),
                    fillColor = pal_Site(Data_Map_gps_catsite$category_site),
-                   fillOpacity = 5,
+                   fillOpacity = 4,
 
                    popup = description,
                    group = "Wifi Site") %>%
   addCircles(lng= ~Lng,
              lat= ~Lat ,
-             radius = 100, group = "Wifi Coverage Zone", stroke = TRUE, color = "black",
-             opacity = 0.5, fill = TRUE, fillColor = "grey", fillOpacity = 5, popup = description) %>%
+             radius = 50, group = "Wifi Coverage Zone", stroke = TRUE, color = "black",
+             opacity = 0.5, fill = TRUE, fillColor = "transparent", fillOpacity = 0.2, popup = description) %>%
 
-  addLegend(pal = pal_Site, values = Data_Map_gps_catsite$category_site, position = "bottomright",title = 'Legend') %>%
+  addLegend(pal = pal_Site, values = Data_Map_gps_catsite$category_site, position = "bottomright", title = 'Legend') %>%
 
   addLayersControl(
-    baseGroups = c("Wifi Site", "Wifi Coverage Zone"),
-    overlayGroups = c("Arrondissement")
+    overlayGroups = c("Arrondissement","Wifi Site", "Wifi Coverage Zone")
     )
 
 return(map)
-
 }
+
