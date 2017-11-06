@@ -1,6 +1,6 @@
 #' Filter the wifi_connexion_data DB joined with the mapping DB, according to the filters parametrized in the Shiny App
 #'
-#' @param start = a POSIXct, end = a POSIXct, duration_min = an int (default is 0), duration_max = an int (default is 7200), districts, = a vector (default is c("All")) , cat_sites = idem, sites = idem, countries = idem, devices = idem
+#' @param start = a POSIXct, end = a POSIXct, duration_min = an int (default is 0), duration_max = an int (default is 7200), districts = a vector (default is c("All")) , cat_sites = idem, sites = idem, countries = idem, devices = idem
 #' @import tidyr dplyr lubridate
 #' @return a dataframe
 #' @export
