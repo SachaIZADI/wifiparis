@@ -7,7 +7,17 @@
 #'
 #' @examples
 #' \dontrun{
-#' A FAIRE
+#' start<-lubridate::ymd("2016-09-27")
+#' end<-lubridate::ymd("2016-09-30")
+#' duration_min<- 0
+#' duration_max<- 7200
+#' districts<-c("20","11","18")
+#' cat_sites<-c("Bibliothèque")
+#' sites<-c("All")
+#' countries<-c("All")
+#' devices<-c("smartphone","table")
+#' Map_plot(start, end, duration_min, duration_max, districts, cat_sites, sites, countries, devices)
+#'
 #' }
 #'
 
@@ -95,16 +105,3 @@ map <- leaflet(arrondissements_geojson, options = leafletOptions(minZoom = 11, m
 
   return(map)
 }
-
-start<-lubridate::ymd("2016-09-27")
-end<-lubridate::ymd("2016-09-30")
-duration_min<- 0
-duration_max<- 7200
-districts<-c("20","11","18")
-cat_sites<-c("Bibliothèque")
-sites<-c("All")
-countries<-c("All")
-devices<-c("smartphone","table")
-
-Map_plot(start, end, duration_min, duration_max, districts, cat_sites, sites, countries, devices)
-
