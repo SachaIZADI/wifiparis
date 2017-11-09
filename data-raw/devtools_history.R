@@ -25,3 +25,5 @@ devtools::use_package("plotly")
 devtools::use_package("treemap")
 devtools::use_package("d3treeR")
 
+devtools::use_vignette("project_description")
+
