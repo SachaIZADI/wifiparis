@@ -20,3 +20,6 @@ Imports: sp,
     treemap,
     d3treeR
 RoxygenNote: 6.0.1
+Suggests: knitr,
+    rmarkdown
+VignetteBuilder: knitr
