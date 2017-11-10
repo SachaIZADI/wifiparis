@@ -45,13 +45,14 @@ description <- paste("Nom:", Data_Map_gps_catsite$Site, "<br>",
 Lng=as.numeric(Data_Map_gps_catsite$y)
 Lat=as.numeric(Data_Map_gps_catsite$x)
 
-map <- leaflet(arrondissements_geojson, options = leafletOptions(minZoom = 11, maxZoom = 14)) %>%
+map <- leaflet(arrondissements_geojson, options = leafletOptions(minZoom = 10, maxZoom = 15)) %>%
 
   addTiles() %>%
 
-  setView(lng =2.345228, lat = 48.862246, zoom = 11) %>%
+  setView(lng =2.345228, lat = 48.862246, zoom = 10) %>%
 
   fitBounds(max(Lng), max(Lat), min(Lng), min(Lat)) %>%
+
 
   addPolygons(color = pal_Ardt, stroke = FALSE,
               smoothFactor = 0, fillOpacity = 0.2,group="Arrondissement") %>%
@@ -95,7 +96,7 @@ map <- leaflet(arrondissements_geojson, options = leafletOptions(minZoom = 11, m
 
 
 
-  addLegend(pal = pal_Site, values = Data_Map_gps_catsite$category_site, position = "bottomleft",opacity = 5, labelFormat(transform = identity)) %>%
+  addLegend(pal = pal_Site, values = Data_Map_gps_catsite$category_site, position = "bottomright",opacity = 5, labelFormat(transform = identity)) %>%
 
   addLayersControl(options = layersControlOptions(collapsed = FALSE),
     baseGroups = c("Wifi Site", "Wifi Clustering"),
