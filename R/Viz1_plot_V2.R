@@ -20,8 +20,6 @@
 #' a_set <- Viz1_Filter(start, end, duration_min, duration_max, districts, cat_sites, sites, countries, devices) %>%
 #' number_connexions(start,end,analysis_axis)
 #'
-#' A TESTER
-#'
 #' Viz1_plot_V2(a_set, start, end, analysis_axis, TRUE)
 #' }
 #'
@@ -31,22 +29,28 @@ Viz1_plot_V2 <-function(a_set, start, end, analysis_axis="None", complete_data=F
   data_Viz1_plot <- a_set
 
   if (analysis_axis == "None"){
+    data_Viz1_plot<-data_Viz1_plot %>% select(date, nb_connexions) %>% unique()
     p<-ggplot(data = data_Viz1_plot,
               aes(x = date , y = nb_connexions))
   } else if(analysis_axis == "Country"){
+    data_Viz1_plot<-data_Viz1_plot %>% select(date, nb_connexions, Country) %>% unique()
     p<-ggplot(data = data_Viz1_plot,
               aes(x = date , y = nb_connexions, color=Country))
   } else if(analysis_axis == "category_device"){
+    data_Viz1_plot<-data_Viz1_plot %>% select(date, nb_connexions, category_device) %>% unique()
     p<-ggplot(data = data_Viz1_plot,
               aes(x = date , y = nb_connexions, color=category_device))
   } else if(analysis_axis == "site"){
+    data_Viz1_plot<-data_Viz1_plot %>% select(date, nb_connexions, site) %>% unique()
     p<-ggplot(data = data_Viz1_plot,
               aes(x = date , y = nb_connexions, color=site))
   } else if(analysis_axis == "Ardt"){
+    data_Viz1_plot<-data_Viz1_plot %>% select(date, nb_connexions, Ardt) %>% unique()
     data_Viz1_plot$Ardt<-as.factor(as.character(data_Viz1_plot$Ardt))
     p<-ggplot(data = data_Viz1_plot,
               aes(x = date , y = nb_connexions, color=Ardt)) ### PB ARDT
   } else if(analysis_axis == "category_site"){
+    data_Viz1_plot<-data_Viz1_plot %>% select(date, nb_connexions, category_site) %>% unique()
     p<-ggplot(data = data_Viz1_plot,
               aes(x = date , y = nb_connexions, color=category_site))
   }
