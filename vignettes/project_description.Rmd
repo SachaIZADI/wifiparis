@@ -1,6 +1,6 @@
 ---
-title: "Vignette Title"
-author: "Vignette Author"
+title: "Project, Package and Application Summary"
+author: "Alexandre Momeni, Sacha Izadi, Amir Benmahjoub"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
@@ -9,64 +9,39 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-The wifiparis project was undertaken by Amir Benmahjoub, Sacha Izadi and Alexandre Momeni for their R course at École Polytechnique. It originated from a ParisData dataset on free public wifi hotspot connexions in 2016. 
+##Project Summary
 
-The dataset was subsequently cleaned and structured using several mapping files to form part of a new R package called "wifiparis". The package also includes spatial datasets of Parisian boroughs and individual wifi sites as well as filtering and visualisation functions. The "wifiparis" packages was then used as as the basis for a Shiny App. 
+The wifiparis project was undertaken by Amir Benmahjoub, Sacha Izadi and Alexandre Momeni for their R course at École Polytechnique. It originated from a ParisData dataset on free public wifi hotspot connexions in 2016. This dataset was subsequently cleaned and structured to form part of a new R package called "wifiparis" and implemented into a Shiny App. The objective of the project is to enable end users to explore the dataset freely and gather insights through different visualisations in this App. (Please note that the maximum authorized duration length is limited to 2 hours i.e. 7200 seconds)
 
-The objective of the project is to enables end users to explore the dataset freely and gather insights through different visualisations in this App. 
+##Package Summary
+##Data Cleaning and Structuring
+
+The data cleaning consisted of  manipulations on the original dataset to render the data usable and interpretable.The data structuring consisted of creating several mapping files which enabled data labelling (language, category sites, devices, country region). 
+For a more detailed overview, please see Data_Cleaning_Steps.R file in the data-raw folder.  
+
+These datasets along with an additional spatial data which reflects individual sites and boroughs, form the data folder of the package. 
+
+##Filters and Functions
+
+The functions of the package were built to:
+1) filter the relevant data the user selects in the Shiny App
+2) create visualualisations with multiple levels of analysis
+
+In particular, there are three visualisations: 
+
+a) A leaflet map which provides geographical insights to the user. There are multiples layering options - clustering, coverage zones, arrondissement delimitations as well as individual information on sites through pop ups. The coverage zones corresponds to a radius of 100m around the wifi site.    
+
+b) A treemap which provides insights on averagn number of connexions and duration for a given Axis of Analysis corresponding to size and colour inte sity respectively. The treemap also has a hierchachy view (axis of analysis: Ardt, Country of origin and the site's category) that allows the user to deepdive into geographical levels.  
+
+c) Two types of the trend lines - one using the raw data and one with smoothered data - providing insights on the number of connexions for a given Axis of Analysis. These consider the timescope selected - the visualitation will plot either daily or hourly connections. 
 
 
-3 - doc d'utilisation de l'app
-4 - (si on est chaud ) un ou deux insight
+##Shiny Application 
 
-I hope this email finds you well. Amir, Sacha and I have been working on a ParisData dataset consisting of different data items collected via free public wifi hotspot connexions in 2016. We have cleaned and structured this dataset, created a package and published a Shiny app. Users will be able to explore the dataset freely and gather insights through our different visualisations. 
-The Paris Wifi Projet 
+The Shiny Application provides a sidebar and a dashboard. 
+
+In addition to the filters, the sidebar contains a link to the source code as well as a link to the filtered data with an option to download as a CSV file. 
+
+The dashboard has the three visualisations from the R package. 
 
 
-Vignettes are long form documentation commonly included in packages. Because they are part of the distribution of the package, they need to be as compact as possible. The `html_vignette` output type provides a custom style sheet (and tweaks some options) to ensure that the resulting html is as small as possible. The `html_vignette` format:
-
-- Never uses retina figures
-- Has a smaller default figure size
-- Uses a custom CSS stylesheet instead of the default Twitter Bootstrap style
-
-## Vignette Info
-
-Note the various macros within the `vignette` section of the metadata block above. These are required in order to instruct R how to build the vignette. Note that you should change the `title` field and the `\VignetteIndexEntry` to match the title of your vignette.
-
-## Styles
-
-The `html_vignette` template includes a basic CSS theme. To override this theme you can specify your own CSS in the document metadata as follows:
-
-    output: 
-      rmarkdown::html_vignette:
-        css: mystyles.css
-
-## Figures
-
-The figure sizes have been customised so that you can easily put two images side-by-side. 
-
-```{r, fig.show='hold'}
-plot(1:10)
-plot(10:1)
-```
-
-You can enable figure captions by `fig_caption: yes` in YAML:
-
-    output:
-      rmarkdown::html_vignette:
-        fig_caption: yes
-
-Then you can use the chunk option `fig.cap = "Your figure caption."` in **knitr**.
-
-## More Examples
-
-You can write math expressions, e.g. $Y = X\beta + \epsilon$, footnotes^[A footnote here.], and tables, e.g. using `knitr::kable()`.
-
-```{r, echo=FALSE, results='asis'}
-knitr::kable(head(mtcars, 10))
-```
-
-Also a quote using `>`:
-
-> "He who gives up [code] safety for [code] speed deserves neither."
-([via](https://twitter.com/hadleywickham/status/504368538874703872))
