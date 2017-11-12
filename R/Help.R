@@ -1,9 +1,10 @@
-#' Training on R package
+#' Package
 #'
-#' functions : Map_plot: Plots a Leaflet Map of Paris with selected filters
+#' @description This package has the functions and datasets underlying the Shiny App developped for the wifiparis project
 #'
 #' @name wifiparis
 #' @docType package
+#'
 #' @author Amir Benmahjoub <amir.benmahjoub@polytechnique.edu>, Alexandre Momeni <alexandre.momeni@polytechnique.edu>, Sacha Izadi <sacha.izadi@polytechnique.edu>
 NULL
 
