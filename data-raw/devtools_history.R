@@ -27,3 +27,5 @@ devtools::use_package("d3treeR")
 
 devtools::use_vignette("project_description")
 
+devtools::use_data(filter_DB)
+
