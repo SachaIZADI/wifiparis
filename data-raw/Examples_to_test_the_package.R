@@ -1,5 +1,7 @@
 library(dplyr)
 
+#
+
 start<-lubridate::ymd("2016-09-27")
 end<-lubridate::ymd("2016-09-30")
 duration_min<- 10
