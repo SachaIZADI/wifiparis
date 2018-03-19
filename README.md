@@ -5,4 +5,6 @@ The original dataset can be found [here](https://opendata.paris.fr/explore/datas
 
 This package includes a cleaned version of the dataset & dataviz functions that were embedded in this [shiny app](https://amirbenmahjoub.shinyapps.io/WIFI_APP_V2/) ([GitHub link](https://github.com/SachaIZADI/wifiparisapp))
 
-This project was realized by [Amir Benmahjoub](https://www.linkedin.com/in/amirbenmahjoub/), [Alexandre Momeni](https://www.linkedin.com/in/alexandre-momeni/) & [Sacha Izadi](https://www.linkedin.com/in/sacha-izadi)
+This project was realized by [Amir Benmahjoub](https://www.linkedin.com/in/amirbenmahjoub/), [Alexandre Momeni](https://www.linkedin.com/in/alexandre-momeni/) & [Sacha Izadi](https://www.linkedin.com/in/sacha-izadi). I personally focused on developping some of the back-end functionnalities and dataviz.
+
+<img src="App_screen.png" height=525>
